@@ -1,209 +1,162 @@
-/* =====================================================================
-   CONFIG: all token data lives here. The page renders from this object.
-   ---------------------------------------------------------------------
-   ca:        "" (empty)  -> shows "TBA" everywhere; Buy + Chart become
-                             placeholders and the live stats strip stays hidden.
-              "0x…"       -> real contract: Buy links to Uniswap swap, chart
-                             embeds DexScreener, live stats load every 60s.
-   twitter /
-   telegram:  null        -> placeholder button ("coming soon" toast, no navigation)
-              ""          -> removes every element for that social
-              "https://…" -> uses the real link (opens in a new tab)
-   ===================================================================== */
+/* ===== $ANT CONFIG: edit these at launch ===== */
 const CONFIG = {
-  // PLACEHOLDERS: the user gave no name or ticker yet. "Ant" / "ANT" are temporary.
-  // Replace name + ticker (and the matching text in index.html <title>/meta) once they're final.
-  name: "Ant",                 // PLACEHOLDER name
-  ticker: "ANT",               // PLACEHOLDER ticker, displayed as $ANT
-  chain: "ethereum",
-  ca: "0xd85db1599a0ff426e74129139ef936f022a1f1f0",
-  twitter: "https://x.com/AnthropicEthX",
-  telegram: "",                // "" removes every Telegram element
-  tagline: "Small ant. Big colony.\nThe hardest-working meme on Ethereum.",
-  bio: "Meet $ANT: a tiny ant in a well-worn cap who shows up every day and gets to work. He's the little guy, and he knows it. No ego, no shortcuts, just one more grain carried for the colony. Alone he's small. Together we're a colony. A community meme, building on Ethereum.",
-  features: [
-    { icon: "🐜", title: "Small but Mighty", text: "Ants carry many times their own weight. Size was never the point; showing up is." },
-    { icon: "🧢", title: "Cap On, Clocked In", text: "A worker's meme for the builders, grinders and quiet doers. Head down, antennae up." },
-    { icon: "🏗️", title: "Built by the Colony", text: "No single ant runs the hill. It's teamwork, community first, building on Ethereum." }
-  ],
-  marquee: ["$ANT", "SMALL BUT MIGHTY", "BIG COLONY", "BUILDING ON ETHEREUM", "CAP ON", "TEAMWORK", "THE LITTLE GUY"],
-  disclaimer: "Ant ($ANT) is an independent community meme token with no intrinsic value, roadmap or expectation of financial return. Nothing on this site is financial advice. Crypto is volatile; only use what you can afford to lose and always verify the contract address."
+  CA: "0xd85db1599a0ff426e74129139ef936f022a1f1f0",     // token contract address, 0x + 40 hex
+  PAIR: "0xd85db1599a0ff426e74129139ef936f022a1f1f0",   // DexScreener pair address (optional; falls back to CA)
+  X: "https://x.com/AnthropicEthX",
 };
+/* ============================================= */
+(() => {
+  "use strict";
+  const ADDR = /^0x[a-fA-F0-9]{40}$/;
+  const caLive = ADDR.test(CONFIG.CA);
+  const TBA = "TBA";
+  const pairId = ADDR.test(CONFIG.PAIR) ? CONFIG.PAIR : (caLive ? CONFIG.CA : TBA);
+  const LINKS = {
+    buy: `https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=${caLive ? CONFIG.CA : ""}`,
+    chart: `https://dexscreener.com/ethereum/${pairId}`,
+    embed: `https://dexscreener.com/ethereum/${pairId}?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15`,
+    x: CONFIG.X, tg: CONFIG.TG,
+  };
+  document.querySelectorAll("[data-link]").forEach(a => { const u = LINKS[a.dataset.link]; if (u) a.href = u; });
+  document.querySelectorAll("[data-ca]").forEach(el => { el.textContent = caLive ? CONFIG.CA : TBA; el.title = caLive ? CONFIG.CA : "Contract address coming at launch"; });
 
-/* ---------- helpers ---------- */
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-const ca = (CONFIG.ca || "").trim();
-const hasCA = ca.length > 0;
-const chainLabel = CONFIG.chain.charAt(0).toUpperCase() + CONFIG.chain.slice(1);
-const buyUrl = hasCA ? `https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=${encodeURIComponent(ca)}` : null;
-const chartUrl = hasCA ? `https://dexscreener.com/${CONFIG.chain}/${encodeURIComponent(ca)}` : null;
+  // chart embed: only load + reveal once a real CA/pair exists
+  const frame = document.getElementById("dexEmbed"), overlay = document.getElementById("chartOverlay");
+  if (frame && ADDR.test(pairId)) { frame.src = LINKS.embed; overlay && overlay.classList.add("hidden"); }
 
-let toastTimer;
-function toast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
-}
-
-function setLink(el, url, soonMsg) {
-  if (url) {
-    el.href = url;
-    el.target = "_blank";
-    el.rel = "noopener noreferrer";
-    el.classList.remove("is-placeholder");
-  } else {
-    el.setAttribute("href", "#");
-    el.dataset.soon = soonMsg;
-    el.classList.add("is-placeholder");
-    el.title = soonMsg;
-    el.setAttribute("aria-disabled", "true");
-  }
-}
-
-/* ---------- render ---------- */
-function render() {
-  $$("[data-name]").forEach(e => (e.textContent = CONFIG.name));
-  $$("[data-ticker]").forEach(e => (e.textContent = "$" + CONFIG.ticker));
-  $$("[data-chain]").forEach(e => (e.textContent = chainLabel));
-  $$("[data-tagline]").forEach(e => (e.textContent = CONFIG.tagline));
-  $$("[data-bio]").forEach(e => (e.textContent = CONFIG.bio));
-  $$("[data-disclaimer]").forEach(e => (e.textContent = CONFIG.disclaimer));
-  $$("[data-ca]").forEach(e => (e.textContent = hasCA ? ca : "TBA"));
-  $("#year").textContent = new Date().getFullYear();
-
-  // features
-  $("#features").innerHTML = CONFIG.features.map(f => `
-    <div class="card"><div class="feat-icon" aria-hidden="true">${f.icon}</div>
-    <h3>${f.title}</h3><p>${f.text}</p></div>`).join("");
-
-  // marquee (duplicated for a seamless loop)
-  const items = CONFIG.marquee.map(m => `<span>${m}</span><span class="star" aria-hidden="true">•••</span>`).join("");
-  $("#marqueeTrack").innerHTML = items + items + items + items;
-
-  // buy + chart links
-  $$("[data-buy]").forEach(e => setLink(e, buyUrl, "Buy link coming soon. CA is TBA"));
-  $$("[data-chart-link]").forEach(e => setLink(e, chartUrl, "Chart coming soon. CA is TBA"));
-
-  // socials
-  ["twitter", "telegram"].forEach(key => {
-    const val = CONFIG[key];
-    const label = key === "twitter" ? "X" : "Telegram";
-    $$(`[data-social="${key}"]`).forEach(el => {
-      if (val === "") { el.closest("li") ? el.closest("li").remove() : el.remove(); return; }
-      setLink(el, val || null, `${label} coming soon`);
-      const cta = $("[data-social-label]", el);
-      if (cta && !val) cta.textContent = "Soon";
-    });
-  });
-
-  // chart
-  const wrap = $("#chartWrap");
-  if (hasCA && /^https:\/\/dexscreener\.com\//.test(chartUrl)) {
-    const src = `${chartUrl}?embed=1&loadChartSettings=0&theme=light&trades=0&info=0`;
-    if (/^https:\/\/dexscreener\.com\//.test(src)) {
-      wrap.innerHTML = `<iframe src="${src}" title="${CONFIG.name} chart on DexScreener" loading="lazy"></iframe>`;
-    }
-  } else {
-    wrap.innerHTML = `
-      <div class="chart-ph">
-        <svg width="120" height="56" viewBox="0 0 120 56" fill="none" aria-hidden="true">
-          <polyline points="2,48 20,40 34,44 50,26 64,32 80,14 96,20 118,6" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#ba6033"/><stop offset="1" stop-color="#2a1d15"/></linearGradient></defs>
-        </svg>
-        <p class="font-display text-2xl text-espresso font-bold">Chart coming soon</p>
-        <p class="text-[#6b5747] max-w-md">The live DexScreener chart appears here once the official contract address is announced.</p>
-        <span class="badge badge-dark">CA: TBA</span>
-      </div>`;
-  }
-}
-
-/* ---------- interactions ---------- */
-function bind() {
-  // placeholder links never navigate
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a.is-placeholder");
-    if (a) { e.preventDefault(); toast(a.dataset.soon || "Coming soon"); }
-  });
-
-  // copy CA
-  $$("[data-copy]").forEach(btn => btn.addEventListener("click", async () => {
-    const text = hasCA ? ca : "TBA";
-    try {
-      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-      else {
-        const ta = document.createElement("textarea");
-        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-        document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
-      }
-    } catch (_) { /* still show feedback */ }
-    btn.textContent = "Copied!";
-    btn.classList.add("copied");
-    toast(hasCA ? "Contract address copied!" : "Copied! (CA is TBA for now)");
-    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1800);
+  // toast + copy
+  const toast = document.getElementById("toast"); let tt;
+  const say = m => { toast.textContent = m; toast.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("show"), 2200); };
+  const fallbackCopy = t => { const ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;opacity:0;left:-9999px"; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} ta.remove(); return ok; };
+  document.querySelectorAll(".copy-ca").forEach(btn => btn.addEventListener("click", async () => {
+    const text = caLive ? CONFIG.CA : TBA;
+    let ok = false;
+    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; } } catch (e) {}
+    if (!ok) ok = fallbackCopy(text);
+    const lbl = btn.querySelector(".lbl"), old = lbl ? lbl.textContent : "";
+    btn.classList.add("copied"); if (lbl) lbl.textContent = "Copied";
+    setTimeout(() => { btn.classList.remove("copied"); if (lbl) lbl.textContent = old; }, 1600);
+    say(!caLive ? "CA is TBA: launching soon. Hold the line." : ok ? "Contract address copied. Colony +1" : "Copy failed: select the address manually");
   }));
 
-  // mobile menu
-  const mb = $("#menuBtn"), mm = $("#mobileMenu");
-  mb.addEventListener("click", () => {
-    const open = mm.classList.toggle("hidden") === false;
-    mb.setAttribute("aria-expanded", String(open));
+  // nav highlight via IntersectionObserver
+  const navLinks = [...document.querySelectorAll(".links a")];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  navLinks.forEach(a => { const s = document.querySelector(a.getAttribute("href")); s && io.observe(s); });
+
+  // scroll progress (native, works without GSAP)
+  const bar = document.getElementById("progressBar");
+  const prog = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`; };
+  addEventListener("scroll", prog, { passive: true }); prog();
+
+  // winding tunnel path through the chambers
+  const tunnel = document.getElementById("tunnel"), ug = document.querySelector(".underground");
+  function buildTunnel() {
+    const w = ug.clientWidth, h = ug.scrollHeight; tunnel.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    const mob = w < 820, xs = mob ? [w * .93, w * .07] : [w * .06, w * .94];
+    const secs = [...ug.querySelectorAll(":scope > section")];
+    let d = `M ${w / 2} 0`, py = 0, px = w / 2;
+    secs.forEach((s, i) => { const y = s.offsetTop + s.offsetHeight * .5, x = xs[i % 2]; const my = (py + y) / 2; d += ` C ${px} ${my}, ${x} ${my}, ${x} ${y}`; py = y; px = x; });
+    d += ` C ${px} ${(py + h) / 2}, ${w / 2} ${(py + h) / 2}, ${w / 2} ${h}`;
+    tunnel.querySelectorAll("path").forEach(p => p.setAttribute("d", d));
+    return tunnel.querySelector(".tunnel-line");
+  }
+  let tline = buildTunnel();
+
+  // gauge/runner setup
+  const runPath = document.getElementById("runPath"), runners = document.getElementById("runners");
+  const N = 7, NS = "http://www.w3.org/2000/svg", rs = [];
+  for (let i = 0; i < N; i++) {
+    const g = document.createElementNS(NS, "g"); g.setAttribute("class", "runner");
+    g.innerHTML = '<ellipse class="body" cx="0" cy="4" rx="5" ry="4"/><ellipse class="body" cx="0" cy="-4" rx="4" ry="3.5"/><circle class="body" cx="0" cy="-10" r="3.5"/><path class="crumb" d="M-5 -19l5-4 6 2 1 5-6 3-6-2z"/>';
+    runners.appendChild(g); rs.push(g);
+  }
+  const L = runPath.getTotalLength();
+  const fill = document.getElementById("gaugeFill"), pct = document.getElementById("gaugePct"), state = document.getElementById("gaugeState");
+  function setRun(p) {
+    rs.forEach((g, i) => { const t = Math.min(1, Math.max(0, p * 1.4 - i * .06)); const len = L * (1 - t * .97); const a = runPath.getPointAtLength(len), b = runPath.getPointAtLength(Math.max(0, len - 2)); const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI + 90; g.setAttribute("transform", `translate(${a.x} ${a.y}) rotate(${ang})`); g.style.opacity = t >= 1 ? 0 : 1; });
+    const v = Math.round(p * 100); fill.style.transform = `scaleX(${p})`; pct.textContent = v + "%";
+    state.textContent = v >= 100 ? "COLONY STRONG" : v > 66 ? "HOLDING THE LINE..." : v > 33 ? "WORKING TOGETHER..." : "DIGGING...";
+    state.classList.toggle("win", v >= 100);
+  }
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coarse = matchMedia("(pointer: coarse), (max-width: 820px)").matches;
+  const hasGSAP = window.gsap && window.ScrollTrigger;
+
+  if (!hasGSAP || reduce) {               // static fallback
+    setRun(1); tline.classList.add("solid");
+    addEventListener("resize", () => { tline = buildTunnel(); tline.classList.add("solid"); });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add("anim");
+  setRun(0);
+
+  // Lenis smooth scroll (desktop only)
+  if (window.Lenis && !coarse) {
+    try {
+      const lenis = new Lenis({ lerp: .1 }); document.documentElement.classList.add("lenis");
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => { const t = document.querySelector(a.getAttribute("href")); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -80 }); } }));
+    } catch (e) {}
+  }
+  const k = coarse ? .45 : 1; // motion damping
+
+  // masthead letter split (aria-label kept on h1)
+  const mh = document.querySelector(".masthead");
+  mh.innerHTML = [...mh.textContent].map(c => `<span class="ch" aria-hidden="true">${c}</span>`).join("");
+  gsap.from(".masthead .ch", { yPercent: 110, rotate: 8, opacity: 0, duration: .9, ease: "back.out(1.6)", stagger: .045, delay: .1 });
+  gsap.from(".kicker, .hero-btns .btn, .hero .ca-box, .scam", { y: 24, opacity: 0, duration: .7, stagger: .08, delay: .45, ease: "power3.out", clearProps: "transform" });
+  gsap.from(".hero-ant", { scale: .9, opacity: 0, duration: 1.2, ease: "power3.out" });
+  gsap.from(".chip", { scale: 0, opacity: 0, duration: .6, stagger: .12, delay: .8, ease: "back.out(2)" });
+
+  // word splits
+  document.querySelectorAll(".split-words").forEach(el => {
+    const nodes = [...el.childNodes]; el.setAttribute("aria-label", el.textContent.trim()); el.innerHTML = "";
+    nodes.forEach(n => { if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) el.append(" "); else { const s = document.createElement("span"); s.className = "w"; s.setAttribute("aria-hidden", "true"); s.textContent = p; el.append(s); } }); else el.append(n); });
+    const ws = el.querySelectorAll(".w");
+    if (el.closest(".hero")) gsap.from(ws, { y: 20, opacity: 0, stagger: .04, duration: .5, delay: .4 });
+    else gsap.from(ws, { yPercent: 80, opacity: 0, rotate: 4, stagger: .06, duration: .7, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
   });
-  $$("a", mm).forEach(a => a.addEventListener("click", () => { mm.classList.add("hidden"); mb.setAttribute("aria-expanded", "false"); }));
 
-  // nav background on scroll
-  const nav = $("#nav");
-  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 20);
-  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
-}
+  // pinned layered-parallax hero
+  const htl = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: coarse ? "+=25%" : "+=70%", pin: true, scrub: .6, anticipatePin: 1 } });
+  htl.to(".hero-word", { xPercent: -45 * k, ease: "none" }, 0)
+     .to(".hero-ant", { yPercent: -10 * k, scale: 1 + .06 * k, ease: "none" }, 0)
+     .to(".chip.c1", { y: -90 * k, x: -20 * k, ease: "none" }, 0)
+     .to(".chip.c2", { y: -140 * k, ease: "none" }, 0)
+     .to(".chip.c3", { y: -60 * k, x: 30 * k, ease: "none" }, 0)
+     .to(".s1", { y: -30 * k, ease: "none" }, 0).to(".s2", { y: -55 * k, ease: "none" }, 0).to(".s3", { y: -80 * k, ease: "none" }, 0)
+     .to(".hero-copy", { y: -40 * k, ease: "none" }, 0);
 
-/* ---------- crumbs (soft floating dots, decorative) ---------- */
-function sparkles() {
-  const box = $(".sparkles");
-  const n = window.innerWidth < 640 ? 8 : 16;
-  let html = "";
-  for (let i = 0; i < n; i++) {
-    const size = 4 + Math.random() * 6;
-    html += `<span class="sparkle" style="left:${Math.random() * 100}%;top:${Math.random() * 100}%;width:${size}px;height:${size}px;--d:${5 + Math.random() * 5}s;--delay:${Math.random() * 5}s"></span>`;
+  // tunnel draw (stroke-dashoffset scrub)
+  function setupTunnel() {
+    const len = tline.getTotalLength(); tline.style.strokeDasharray = `${len}`; tline.style.strokeDashoffset = `${len}`;
+    return gsap.to(tline, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ug, start: "top 70%", end: "bottom bottom", scrub: .5 } });
   }
-  box.innerHTML = html;
-}
+  let tAnim = setupTunnel();
 
-/* ---------- live stats (only with a real CA) ---------- */
-const fmtUsd = (n, small) => {
-  if (n == null || isNaN(n)) return "-";
-  n = Number(n);
-  if (small && n < 1) return "$" + n.toPrecision(4);
-  if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
-  if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
-  if (n >= 1e3) return "$" + (n / 1e3).toFixed(1) + "K";
-  return "$" + n.toFixed(2);
-};
-async function loadStats() {
-  const box = $("#stats");
-  if (!hasCA) { box.classList.add("hidden"); return; }
-  try {
-    const r = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${encodeURIComponent(ca)}`);
-    if (!r.ok) throw new Error(r.status);
-    const d = await r.json();
-    const pairs = (d.pairs || []).filter(p => p.chainId === CONFIG.chain);
-    if (!pairs.length) throw new Error("no pairs");
-    const p = pairs.sort((a, b) => (b.liquidity?.usd || 0) - (a.liquidity?.usd || 0))[0];
-    $('[data-stat="price"]').textContent = fmtUsd(p.priceUsd, true);
-    $('[data-stat="mcap"]').textContent = fmtUsd(p.marketCap ?? p.fdv);
-    $('[data-stat="liq"]').textContent = fmtUsd(p.liquidity?.usd);
-    $('[data-stat="vol"]').textContent = fmtUsd(p.volume?.h24);
-    box.classList.remove("hidden");
-  } catch (_) {
-    box.classList.add("hidden");
-  }
-}
+  // banner clip-path reveal + pan-zoom
+  gsap.fromTo("#bannerClip", { clipPath: "inset(18% 22% 18% 22% round 32px)" }, { clipPath: "inset(0% 0% 0% 0% round 32px)", ease: "none", scrollTrigger: { trigger: ".banner-sec", start: "top 90%", end: "top 30%", scrub: .6 } });
+  gsap.fromTo("#bannerImg", { scale: 1.25, xPercent: -3 }, { scale: 1, xPercent: 3, ease: "none", scrollTrigger: { trigger: ".banner-sec", start: "top bottom", end: "bottom top", scrub: true } });
 
-document.addEventListener("DOMContentLoaded", () => {
-  render();
-  bind();
-  sparkles();
-  if (hasCA) { loadStats(); setInterval(loadStats, 60000); }
-});
+  // signature pinned scene: crumb run fills the colony gauge
+  ScrollTrigger.create({ trigger: "#strength", start: coarse ? "top 10%" : "top top", end: coarse ? "+=60%" : "+=120%", pin: true, scrub: .4, onUpdate: s => setRun(s.progress), onLeave: () => setRun(1) });
+
+  // batch reveals
+  ScrollTrigger.batch(".reveal", { start: "top 88%", once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, stagger: .1, duration: .8, ease: "power3.out", overwrite: true }) });
+
+  // counters
+  document.querySelectorAll(".count").forEach(c => { const to = +c.dataset.to, o = { v: 0 }; if (!to) return; c.textContent = "0"; gsap.to(o, { v: to, duration: 1.6, ease: "power2.out", scrollTrigger: { trigger: c, start: "top 90%", once: true }, onUpdate: () => c.textContent = Math.round(o.v) }); });
+
+  // ribbons speed up with scroll velocity
+  if (!coarse) ScrollTrigger.create({ onUpdate: s => { const v = Math.min(3, 1 + Math.abs(s.getVelocity()) / 1500); document.querySelectorAll(".ribbon .track").forEach(t => t.getAnimations().forEach(a => a.playbackRate = v)); } });
+
+  let rT; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(() => { tline = buildTunnel(); tAnim.scrollTrigger.kill(); tAnim.kill(); tAnim = setupTunnel(); ScrollTrigger.refresh(); }, 250); });
+  addEventListener("load", () => { tline = buildTunnel(); tAnim.scrollTrigger.kill(); tAnim.kill(); tAnim = setupTunnel(); ScrollTrigger.refresh(); });
+})();

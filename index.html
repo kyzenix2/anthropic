@@ -1,234 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ant ($ANT) | Small Ant. Big Colony. On Ethereum</title>
-  <meta name="description" content="Small ant. Big colony. Ant ($ANT) is the hardest-working community meme token on Ethereum." />
-  <meta name="theme-color" content="#e9e1d6" />
-  <meta property="og:title" content="Ant ($ANT)" />
-  <meta property="og:description" content="Small ant. Big colony. The hardest-working meme on Ethereum." />
-  <meta property="og:image" content="assets/banner.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="preload" as="image" href="assets/banner.webp" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: '#e9e1d6', surface: '#f4efe8', surface2: '#fbf8f3',
-            rust: '#ba6033', rustdeep: '#984720', espresso: '#2a1d15', cream: '#f4efe8', peach: '#984720'
-          },
-          fontFamily: {
-            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
-            serif: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
-            sans: ['Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anthropic ($ANT) | Small but mighty on Ethereum</title>
+<meta name="description" content="$ANT — the colony meme token on Ethereum. Small but mighty. Hold the line.">
+<meta property="og:title" content="Anthropic ($ANT)">
+<meta property="og:description" content="Small but mighty. The colony meme token on Ethereum.">
+<meta property="og:image" content="assets/banner.png">
+<meta name="theme-color" content="#1a0f0a">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/ant-masked.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-ink text-espresso font-sans antialiased">
-  <div class="sparkles" aria-hidden="true"></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+<div class="grain" aria-hidden="true"></div>
 
-  <!-- 1. NAVBAR -->
-  <header id="nav" class="fixed top-0 inset-x-0 z-50 nav">
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-      <a href="#top" class="flex items-center gap-2.5 min-w-0">
-        <img src="assets/logo.webp" alt="" width="36" height="36" class="w-9 h-9 rounded-full logo-glow-sm" />
-        <span class="font-display font-bold tracking-tight text-espresso truncate text-sm sm:text-base" data-name>Ant</span>
-        <span class="badge hidden sm:inline-flex" data-ticker>$ANT</span>
-      </a>
-      <div class="hidden md:flex items-center gap-7 text-sm text-[#5c4a3c]">
-        <a href="#about" class="navlink">About</a>
-        <a href="#how" class="navlink">How to Buy</a>
-        <a href="#community" class="navlink">Community</a>
-        <a href="#chart" class="navlink">Chart</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-ant" viewBox="0 0 64 32"><g fill="currentColor"><ellipse cx="12" cy="17" rx="7" ry="6"/><ellipse cx="27" cy="17" rx="6" ry="5"/><circle cx="41" cy="16" r="6"/></g><g stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M45 11l6-7M44 12l9-3"/><path d="M24 21l-5 8M28 21l1 8M31 20l6 8M24 13l-5-8M28 13l1-8M31 14l6-8"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></g></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></g></symbol>
+    <!-- X: swap this inline icon for <img src="assets/x.png"> when provided -->
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h4.6l4.1 5.8L17.6 3H20l-6.2 7.3L21 21h-4.6l-4.5-6.3L6.6 21H4.2l6.6-7.7z"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/></g></symbol>
+    <symbol id="i-eth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l7 10-7 4-7-4z"/><path d="M5 13.5l7 8.5 7-8.5-7 4z"/></g></symbol>
+    <symbol id="i-bridge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16h20M4 16V9M20 16V9M2 9c4 0 6-4 10-4s6 4 10 4M8 16v-4M12 16v-5M16 16v-4"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></g></symbol>
+    <symbol id="i-crumb" viewBox="0 0 24 24"><path fill="currentColor" d="M6 9l5-4 6 2 3 6-3 5-7 1-5-4z"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 18h18l-1-11-5 5-3-7-3 7-5-5z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav glass" id="nav">
+  <a href="#top" class="brand" aria-label="Anthropic $ANT home">
+    <picture><source srcset="assets/logo-thumb.webp" type="image/webp"><img src="assets/logo-thumb.png" width="40" height="40" alt="$ANT logo: orange ant wearing a beige cap"></picture>
+    <span>$ANT</span>
+  </a>
+  <nav class="links" aria-label="Sections">
+    <a href="#colony">Colony</a><a href="#strength">Strength</a><a href="#report">Report</a><a href="#how">How to Buy</a><a href="#chart">Chart</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="nav-cta">
+    <button class="btn btn-ghost btn-sm copy-ca" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy CA</span></button>
+    <a class="icon-btn" data-link="x" href="https://x.com/AnthropicEthX" target="_blank" rel="noopener" aria-label="$ANT on X"><svg><use href="#i-x"/></svg></a>
+    <a class="btn btn-primary btn-sm hide-sm" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO: surface of the anthill -->
+<section class="hero" id="top">
+  <div class="hero-sky" data-depth="0.1" aria-hidden="true"></div>
+  <div class="hero-word" aria-hidden="true">$ANT</div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="kicker"><span class="dot"></span>Live on Ethereum</p>
+      <h1 class="masthead" aria-label="Anthropic">Anthropic</h1>
+      <p class="hero-sub split-words">Small but mighty. One ant lifts fifty times its weight. A colony lifts the chart.</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg>Buy Now</a>
+        <a class="btn btn-dark btn-lg" data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-chart"/></svg>Chart</a>
       </div>
-      <div class="flex items-center gap-2">
-        <a href="#" class="btn-rust btn-sm" data-buy>Buy Now</a>
-        <button id="menuBtn" class="md:hidden icon-btn" aria-label="Open menu" aria-expanded="false">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
+      <div class="ca-box glass" role="group" aria-label="Contract address">
+        <span class="ca-tag">CA</span>
+        <code class="ca-value" data-ca>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code>
+        <button class="copy-ca ca-btn" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy</span></button>
       </div>
-    </nav>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-[#d9cbb9] bg-[#f4efe8f2]">
-      <div class="px-4 py-3 flex flex-col text-[#3a2a1f]">
-        <a href="#about" class="py-2.5">About</a>
-        <a href="#how" class="py-2.5">How to Buy</a>
-        <a href="#community" class="py-2.5">Community</a>
-        <a href="#chart" class="py-2.5">Chart</a>
+      <p class="scam"><svg><use href="#i-shield"/></svg>Only trust the CA posted here and on our official X. Nobody from the colony will DM you first.</p>
+    </div>
+    <div class="hero-art">
+      <div class="halo" aria-hidden="true"></div>
+      <picture class="hero-ant" data-depth="0.35">
+        <source srcset="assets/ant-masked.webp" type="image/webp">
+        <img src="assets/ant-masked.png" width="720" height="500" alt="The $ANT mascot: a realistic orange-red ant wearing a beige cap with a stylized A mark" fetchpriority="high">
+      </picture>
+      <span class="chip c1" data-depth="0.6">SMALL BUT MIGHTY</span>
+      <span class="chip c2" data-depth="0.8">COLONY +1</span>
+      <span class="chip c3" data-depth="0.5">HOLD THE LINE</span>
+    </div>
+  </div>
+  <div class="strata" aria-hidden="true">
+    <svg class="s1" data-depth="0.2" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 60 C200 20 380 90 620 50 S1100 10 1440 60 V120 H0z"/></svg>
+    <svg class="s2" data-depth="0.4" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 70 C260 110 480 30 760 70 S1200 100 1440 50 V120 H0z"/></svg>
+    <svg class="s3" data-depth="0.6" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 80 C300 50 500 110 820 80 S1250 60 1440 90 V120 H0z"/></svg>
+    <div class="marchers top"><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg></div>
+  </div>
+</section>
+
+<div class="ribbons" aria-hidden="true">
+  <div class="ribbon r1"><div class="track">HOLD THE LINE <i></i> COLONY STRONG <i></i> SMALL BUT MIGHTY <i></i> WORK TOGETHER <i></i> $ANT <i></i> HOLD THE LINE <i></i> COLONY STRONG <i></i> SMALL BUT MIGHTY <i></i> WORK TOGETHER <i></i> $ANT <i></i></div></div>
+  <div class="ribbon r2"><div class="track">ETHEREUM <i></i> ONE COLONY <i></i> NO ANT LEFT BEHIND <i></i> DIG DEEPER <i></i> ETHEREUM <i></i> ONE COLONY <i></i> NO ANT LEFT BEHIND <i></i> DIG DEEPER <i></i></div></div>
+</div>
+
+<div class="underground">
+  <svg class="tunnel" id="tunnel" aria-hidden="true"><path class="tunnel-bed"/><path class="tunnel-line"/></svg>
+
+  <section class="chamber" id="colony">
+    <div class="wrap grid-2">
+      <div>
+        <p class="depth">Chamber 01 &middot; Depth 12cm</p>
+        <h2 class="split-words">Welcome to the colony.</h2>
+        <p class="lead reveal">$ANT is a meme token built on one simple truth: nothing is stronger than a colony that works together. No whales pretending to be kings. Just millions of tiny workers, carrying crumbs, holding the line.</p>
+        <ul class="ticks">
+          <li class="reveal"><svg><use href="#i-check"/></svg>Built on Ethereum</li>
+          <li class="reveal"><svg><use href="#i-check"/></svg>Community first, pure meme energy</li>
+          <li class="reveal"><svg><use href="#i-check"/></svg>Small but mighty since day one</li>
+        </ul>
+      </div>
+      <figure class="logo-frame reveal">
+        <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" width="400" height="400" loading="lazy" alt="$ANT logo portrait: orange ant with an A-marked beige cap"></picture>
+        <figcaption>Worker #0001 &middot; reporting for duty</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="banner-sec" aria-label="Colony banner">
+    <div class="banner-clip" id="bannerClip">
+      <picture><source srcset="assets/banner.webp" type="image/webp"><img id="bannerImg" src="assets/banner.png" width="1500" height="500" loading="lazy" alt="Wide banner of the $ANT mascot ant in its beige cap"></picture>
+      <p class="banner-tag">ONE ANT. ONE COLONY. ONE CHAIN.</p>
+    </div>
+  </section>
+
+  <section class="chamber strength" id="strength">
+    <div class="wrap strength-grid">
+      <div>
+        <p class="depth">Chamber 02 &middot; The Crumb Run</p>
+        <h2 class="split-words">Every crumb counts.</h2>
+        <p class="lead">Scroll down and watch the workers haul crumbs up the tunnel. Every holder is one more ant on the line. Enough ants and the gauge hits the top.</p>
+        <div class="gauge glass" role="img" aria-label="Colony strength gauge filling to colony strong">
+          <div class="gauge-head"><span>COLONY STRENGTH</span><b id="gaugePct">0%</b></div>
+          <div class="gauge-bar"><span id="gaugeFill"></span></div>
+          <p class="gauge-state" id="gaugeState">DIGGING...</p>
+        </div>
+      </div>
+      <div class="run">
+        <svg viewBox="0 0 300 420" class="run-svg" aria-hidden="true">
+          <path id="runPath" d="M150 410 C40 360 260 300 150 240 S40 120 150 70 S200 20 150 10" class="run-tunnel"/>
+          <path d="M150 410 C40 360 260 300 150 240 S40 120 150 70 S200 20 150 10" class="run-dash"/>
+          <ellipse cx="150" cy="12" rx="60" ry="10" class="run-mound"/>
+          <g id="runners"></g>
+        </svg>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-    <!-- 2. HERO -->
-    <section class="relative pt-16 overflow-hidden pb-4">
-      <div class="banner-wrap">
-        <img src="assets/banner.webp" alt="Ant banner: a fuzzy rust-orange ant wearing a beige cap" width="1500" height="500" class="w-full h-auto block" fetchpriority="high" />
-        <div class="banner-fade"></div>
-      </div>
-      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center mt-3 md:-mt-12">
-        <div class="coin-stage mx-auto">
-          <div class="coin-halo"></div>
-
-          <img src="assets/logo.webp" alt="Ant logo: close-up of a fuzzy ant in a beige baseball cap" width="400" height="400" class="coin" />
-        </div>
-        <h1 class="font-display font-extrabold text-5xl sm:text-7xl lg:text-8xl mt-6 rust-text tracking-tight" data-name>Ant</h1>
-        <div class="mt-4 flex items-center justify-center gap-2 flex-wrap">
-          <span class="badge" data-ticker>$ANT</span>
-          <span class="badge badge-dark"><span class="eth-dot"></span><span data-chain>Ethereum</span></span>
-        </div>
-        <p class="mt-5 font-serif font-medium text-lg sm:text-2xl text-[#3a2a1f] leading-snug whitespace-pre-line" data-tagline></p>
-
-        <div class="ca-box mt-7 mx-auto">
-          <span class="ca-label">CA</span>
-          <code class="ca-value" data-ca>TBA</code>
-          <button class="btn-copy" data-copy type="button">Copy</button>
-        </div>
-
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <a href="#" class="btn-rust" data-buy>Buy Now</a>
-          <a href="#" class="btn-ghost" data-social="twitter">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            X
-          </a>
-        </div>
-        <div class="mt-5 inline-flex items-center gap-2 text-sm text-[#5c4a3c]">
-          <span class="live-dot"></span><span><span data-chain>Ethereum</span> • Live</span>
-        </div>
-
-        <!-- Live stats (only when CA is real) -->
-        <div id="stats" class="hidden mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div class="stat"><span>Price</span><b data-stat="price">-</b></div>
-          <div class="stat"><span>Market Cap</span><b data-stat="mcap">-</b></div>
-          <div class="stat"><span>Liquidity</span><b data-stat="liq">-</b></div>
-          <div class="stat"><span>24h Volume</span><b data-stat="vol">-</b></div>
-        </div>
-      </div>
-
-      <!-- Marquee -->
-      <div class="marquee mt-14" aria-hidden="true">
-        <div class="marquee-track" id="marqueeTrack"></div>
-      </div>
-    </section>
-
-    <!-- 3. ABOUT -->
-    <section id="about" class="section">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <p class="eyebrow">About</p>
-        <h2 class="h2">The <span class="rust-text">little guy</span> who never clocks out</h2>
-        <p class="mt-5 max-w-2xl text-[#5c4a3c] text-lg leading-relaxed" data-bio></p>
-        <div class="mt-10 grid gap-4 sm:gap-5 md:grid-cols-3" id="features"></div>
-      </div>
-    </section>
-
-    <!-- 4. HOW TO BUY -->
-    <section id="how" class="section bg-surface/60">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <p class="eyebrow">How to Buy</p>
-        <h2 class="h2">Join the colony in <span class="rust-text">four steps</span></h2>
-        <div class="eth-box mt-8">
-          <div class="eth-icon"><span class="eth-dot lg"></span></div>
-          <div class="min-w-0">
-            <p class="font-display text-espresso text-lg font-bold">You're on Ethereum</p>
-            <p class="text-[#5c4a3c] text-sm mt-1">$ANT lives on Ethereum mainnet. You'll need an Ethereum wallet and some ETH for the swap and gas fees.</p>
-          </div>
-        </div>
-        <ol class="steps-trail mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <li class="card step"><span class="step-num">01</span><h3>Get MetaMask</h3><p>Install the MetaMask app or browser extension from <span class="text-peach">metamask.io</span> and create a wallet. Keep your seed phrase private.</p></li>
-          <li class="card step"><span class="step-num">02</span><h3>Buy ETH</h3><p>Buy ETH inside MetaMask or on an exchange, then send it to your MetaMask wallet address.</p></li>
-          <li class="card step"><span class="step-num">03</span><h3>Open Uniswap</h3><p>Go to <span class="text-peach">app.uniswap.org</span> and connect your MetaMask wallet.</p></li>
-          <li class="card step"><span class="step-num">04</span><h3>Paste CA &amp; swap</h3><p>Paste the official contract address (<code class="text-peach break-all" data-ca>TBA</code>), choose an amount of ETH and confirm the swap.</p></li>
-        </ol>
-        <div class="mt-8 flex justify-center">
-          <a href="#" class="btn-rust" data-buy>Swap on DEX</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. COMMUNITY -->
-    <section id="community" class="section">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <p class="eyebrow">Community</p>
-        <h2 class="h2">Join the <span class="rust-text">colony</span></h2>
-        <div class="mt-8 grid gap-4 max-w-xl">
-          <a href="#" class="card social-card" data-social="twitter">
-            <div class="social-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
-            <div class="min-w-0"><h3>X (Twitter)</h3><p>News, memes and announcements.</p></div>
-            <span class="social-cta" data-social-label>Follow</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. LIVE CHART -->
-    <section id="chart" class="section bg-surface/60">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <p class="eyebrow">Live Chart</p>
-        <h2 class="h2">Watch the <span class="rust-text">anthill</span></h2>
-        <div id="chartWrap" class="chart-wrap mt-8"></div>
-        <div class="mt-6 flex justify-center">
-          <a href="#" class="btn-ghost" data-chart-link>Open on DexScreener ↗</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 7. FOOTER -->
-  <footer class="bg-[#2a1d15]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-8">
-      <div class="grid gap-10 md:grid-cols-12">
-        <div class="md:col-span-5">
-          <div class="flex items-center gap-3">
-            <img src="assets/logo.webp" alt="" width="48" height="48" class="w-12 h-12 rounded-full logo-glow-sm" loading="lazy" />
-            <span class="font-display font-bold text-xl text-cream" data-name>Ant</span>
-            <span class="badge" data-ticker>$ANT</span>
-          </div>
-          <p class="mt-4 font-serif text-lg text-[#d8c8b6] whitespace-pre-line" data-tagline></p>
-        </div>
-        <div class="md:col-span-2">
-          <p class="foot-h">Explore</p>
-          <ul class="foot-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#how">How to Buy</a></li>
-            <li><a href="#community">Community</a></li>
-            <li><a href="#chart">Chart</a></li>
-          </ul>
-        </div>
-        <div class="md:col-span-2">
-          <p class="foot-h">Socials</p>
-          <ul class="foot-list">
-            <li><a href="#" data-social="twitter">X (Twitter)</a></li>
-          </ul>
-        </div>
-        <div class="md:col-span-3">
-          <p class="foot-h">Contract</p>
-          <div class="ca-box ca-box-sm mt-3">
-            <code class="ca-value" data-ca>TBA</code>
-            <button class="btn-copy" data-copy type="button">Copy</button>
-          </div>
-        </div>
-      </div>
-      <div class="wordmark font-display font-black wordmark-text" aria-hidden="true" data-name>Ant</div>
-      <div class="border-t border-[#4a372a] pt-6 grid gap-3 md:grid-cols-2 text-xs text-[#b5a28f]">
-        <p data-disclaimer></p>
-        <p class="md:text-right">© <span id="year"></span> <span data-name>Ant</span>. All rights reserved.</p>
+  <section class="chamber" id="report">
+    <div class="wrap">
+      <p class="depth">Chamber 03 &middot; Colony Report</p>
+      <h2 class="split-words">The colony report.</h2>
+      <div class="stats">
+        <article class="stat glass reveal"><span class="k">Ticker</span><b>$ANT</b><p>One symbol, one colony.</p></article>
+        <article class="stat glass reveal"><span class="k">Chain</span><b>Ethereum</b><p>Mainnet, paid in ETH.</p></article>
+        <article class="stat glass reveal"><span class="k">Lift ratio</span><b><span class="count" data-to="50">50</span>x</b><p>An ant lifts 50x its weight.</p></article>
+        <article class="stat glass reveal"><span class="k">Ants left behind</span><b><span class="count" data-to="0">0</span></b><p>Work together. Hold together.</p></article>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <section class="chamber" id="how">
+    <div class="wrap">
+      <p class="depth">Chamber 04 &middot; The Nursery</p>
+      <h2 class="split-words">How to buy $ANT.</h2>
+      <ol class="steps">
+        <li class="step glass reveal"><span class="n">01</span><svg class="si"><use href="#i-wallet"/></svg><h3>Get a wallet</h3><p>Install MetaMask or Rabby and create a wallet on Ethereum.</p></li>
+        <li class="step glass reveal"><span class="n">02</span><svg class="si"><use href="#i-eth"/></svg><h3>Get ETH</h3><p>Buy ETH on an exchange and send it to your Ethereum wallet. You'll use it for the swap and gas.</p></li>
+        <li class="step glass reveal"><span class="n">03</span><svg class="si"><use href="#i-swap"/></svg><h3>Open Uniswap</h3><p>Go to Uniswap, connect your wallet and stay on Ethereum.</p></li>
+        <li class="step glass reveal"><span class="n">04</span><svg class="si"><use href="#i-ant"/></svg><h3>Paste the CA and swap</h3><p>Paste the $ANT contract address, choose your ETH amount and swap. Welcome to the colony.</p></li>
+      </ol>
+      <div class="how-cta reveal">
+        <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg>Buy $ANT on Uniswap</a>
+        <div class="ca-box glass" role="group" aria-label="Contract address"><span class="ca-tag">CA</span><code class="ca-value" data-ca>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code><button class="copy-ca ca-btn" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy</span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chamber" id="chart">
+    <div class="wrap">
+      <p class="depth">Chamber 05 &middot; The Lookout</p>
+      <h2 class="split-words">Watch the hill grow.</h2>
+      <div class="chart-frame glass reveal">
+        <div class="chart-bar"><span><i></i><i></i><i></i></span><b>$ANT / ETH &middot; Ethereum</b><a data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Open DexScreener</a></div>
+        <div class="chart-body">
+          <style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe id="dexEmbed" src="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chamber" id="faq">
+    <div class="wrap narrow">
+      <p class="depth">Chamber 06 &middot; The Royal Chamber</p>
+      <h2 class="split-words"><svg class="crown"><use href="#i-crown"/></svg> Questions from the Queen.</h2>
+      <div class="faq">
+        <details class="glass reveal"><summary>What is $ANT?</summary><p>A community meme token on Ethereum celebrating the humble ant: small but mighty, and unstoppable together.</p></details>
+        <details class="glass reveal"><summary>Which chain is it on?</summary><p>Ethereum mainnet. You pay gas and swap with ETH.</p></details>
+        <details class="glass reveal"><summary>Where is the contract address?</summary><p>0xd85db1599a0ff426e74129139ef936f022a1f1f0. It appears in every CA box on this page. Always verify it against our official X.</p></details>
+        <details class="glass reveal"><summary>Is this affiliated with any company?</summary><p>No. $ANT is a community meme token with no affiliation with Anthropic PBC or any company.</p></details>
+        <details class="glass reveal"><summary>How do I join the colony?</summary><p>Follow us on X, buy some $ANT and hold the line.</p></details>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="surface-cta">
+  <div class="marchers"><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg></div>
+  <h2 class="split-words">Colony strong. Join the line.</h2>
+  <div class="hero-btns center">
+    <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
+    <a class="btn btn-dark btn-lg" data-link="x" href="https://x.com/AnthropicEthX" target="_blank" rel="noopener"><svg><use href="#i-x"/></svg>Follow on X</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-brand"><picture><source srcset="assets/logo-thumb.webp" type="image/webp"><img src="assets/logo-thumb.png" width="48" height="48" alt="$ANT logo" loading="lazy"></picture><b>Anthropic ($ANT)</b></div>
+    <p class="disc">$ANT is a community meme token with no affiliation with Anthropic PBC or any company. It has no intrinsic value or expectation of financial return. Nothing on this site is financial advice. Crypto is risky; only use what you can afford to lose. Always verify the contract address.</p>
+    <p class="copy">&copy; 2026 The $ANT colony. Small but mighty.</p>
+  </div>
+</footer>
+
+<div class="mobile-bar glass" aria-label="Quick actions">
+  <a class="btn btn-primary" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
+  <a class="btn btn-dark" data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Chart</a>
+  <button class="btn btn-ghost copy-ca" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">CA</span></button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
