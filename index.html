@@ -2,241 +2,315 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Anthropic ($ANT) | Small but mighty on Ethereum</title>
-<meta name="description" content="$ANT — the colony meme token on Ethereum. Small but mighty. Hold the line.">
-<meta property="og:title" content="Anthropic ($ANT)">
-<meta property="og:description" content="Small but mighty. The colony meme token on Ethereum.">
-<meta property="og:image" content="assets/banner.png">
-<meta name="theme-color" content="#1a0f0a">
-<link rel="icon" href="assets/favicon.png">
-<link rel="preload" as="image" href="assets/ant-masked.webp" type="image/webp">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>$ANT | Anthropic - The Colony on Ethereum</title>
+<meta name="description" content="$ANT is an independent community meme token on Ethereum. Dig in, join the colony.">
+<meta name="theme-color" content="#120a06">
+<meta property="og:title" content="$ANT | The Colony on Ethereum">
+<meta property="og:description" content="An independent community meme token on Ethereum. Six legs, one colony.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AnthropicEthX">
+<meta name="twitter:image" content="assets/og-image.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
-<div class="grain" aria-hidden="true"></div>
-
+<!-- SVG icon sprite: every icon on the page is an inline SVG symbol (no emoji). -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-ant" viewBox="0 0 64 32"><g fill="currentColor"><ellipse cx="12" cy="17" rx="7" ry="6"/><ellipse cx="27" cy="17" rx="6" ry="5"/><circle cx="41" cy="16" r="6"/></g><g stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M45 11l6-7M44 12l9-3"/><path d="M24 21l-5 8M28 21l1 8M31 20l6 8M24 13l-5-8M28 13l1-8M31 14l6-8"/></g></symbol>
-    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></g></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></g></symbol>
-    <symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></g></symbol>
-    <!-- X: swap this inline icon for <img src="assets/x.png"> when provided -->
-    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h4.6l4.1 5.8L17.6 3H20l-6.2 7.3L21 21h-4.6l-4.5-6.3L6.6 21H4.2l6.6-7.7z"/></symbol>
-    <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/></g></symbol>
-    <symbol id="i-eth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l7 10-7 4-7-4z"/><path d="M5 13.5l7 8.5 7-8.5-7 4z"/></g></symbol>
-    <symbol id="i-bridge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16h20M4 16V9M20 16V9M2 9c4 0 6-4 10-4s6 4 10 4M8 16v-4M12 16v-5M16 16v-4"/></g></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></g></symbol>
-    <symbol id="i-crumb" viewBox="0 0 24 24"><path fill="currentColor" d="M6 9l5-4 6 2 3 6-3 5-7 1-5-4z"/></symbol>
-    <symbol id="i-crown" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 18h18l-1-11-5 5-3-7-3 7-5-5z"/></symbol>
-  </defs>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.9 2h6.4l4.4 5.9L18.9 2Zm-1.1 18h1.7L8.3 3.9H6.5L17.8 20Z"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 15l4-4 3 3 6-7"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h12v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 13.5h2"/></g></symbol>
+  <symbol id="i-eth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2 5 12.2 12 16l7-3.8L12 2Z"/><path d="M5 13.6 12 22l7-8.4L12 17.5 5 13.6Z"/></g></symbol>
+  <symbol id="i-diamond" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h12l4 6-10 12L2 9l4-6Zm-4 6h20M9 3l3 18 3-18"/></symbol>
+  <symbol id="i-ant" viewBox="0 0 64 64"><g fill="currentColor"><ellipse cx="32" cy="14" rx="7" ry="7"/><ellipse cx="32" cy="28" rx="6" ry="7.5"/><ellipse cx="32" cy="47" rx="10" ry="13"/></g><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M28 9 21 2M36 9l7-7M27 25l-12-6-4 4M37 25l12-6 4 4M27 30l-14 2-3 6M37 30l14 2 3 6M28 34l-10 10-1 8M36 34l10 10 1 8"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-shovel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 2l3 3M20.5 3.5 13 11M9 9l6 6-3 3a4.2 4.2 0 0 1-6 0 4.2 4.2 0 0 1 0-6l3-3Z"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 18h18M4 15 3 6l5 4 4-6 4 6 5-4-1 9H4Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3a9 9 0 1 0 9 9h-9V3Zm3-1v7h7a7 7 0 0 0-7-7Z"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></g></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12Z"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/></g></symbol>
 </svg>
 
-<header class="nav glass" id="nav">
-  <a href="#top" class="brand" aria-label="Anthropic $ANT home">
-    <picture><source srcset="assets/logo-thumb.webp" type="image/webp"><img src="assets/logo-thumb.png" width="40" height="40" alt="$ANT logo: orange ant wearing a beige cap"></picture>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="trail" aria-hidden="true"></canvas>
+
+<!-- depth meter -->
+<div class="depth" aria-hidden="true">
+  <div class="depth__bar"><span class="depth__fill"></span></div>
+  <div class="depth__readout"><span id="depthVal">0</span>m</div>
+  <div class="depth__label">depth</div>
+</div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="$ANT home">
+    <img src="assets/logo.png" alt="" width="40" height="40" class="nav__logo">
     <span>$ANT</span>
   </a>
-  <nav class="links" aria-label="Sections">
-    <a href="#colony">Colony</a><a href="#strength">Strength</a><a href="#report">Report</a><a href="#how">How to Buy</a><a href="#chart">Chart</a><a href="#faq">FAQ</a>
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <a href="#lore">Lore</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#buy">How to Buy</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#faq">FAQ</a>
   </nav>
-  <div class="nav-cta">
-    <button class="btn btn-ghost btn-sm copy-ca" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy CA</span></button>
-    <a class="icon-btn" data-link="x" href="https://x.com/AnthropicEthX" target="_blank" rel="noopener" aria-label="$ANT on X"><svg><use href="#i-x"/></svg></a>
-    <a class="btn btn-primary btn-sm hide-sm" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
+  <div class="nav__cta">
+    <a class="icon-btn" data-x-link href="https://x.com/AnthropicEthX" target="_blank" rel="noopener" aria-label="$ANT on X"><svg><use href="#i-x"/></svg></a>
+    <a class="btn btn--amber btn--sm magnetic" data-buy-link href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg><span>Buy $ANT</span></a>
+    <button class="icon-btn nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg><use href="#i-menu"/></svg></button>
   </div>
 </header>
 
+<svg id="tunnel" class="tunnel" aria-hidden="true">
+  <defs><mask id="digMask" maskUnits="userSpaceOnUse" x="0" y="0" width="10000" height="100000"><path class="tunnel__mask"/></mask></defs>
+  <path class="tunnel__wall"/><path class="tunnel__bore"/><path class="tunnel__pher" mask="url(#digMask)"/>
+</svg>
+
 <main id="main">
-<!-- HERO: surface of the anthill -->
+<!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero-sky" data-depth="0.1" aria-hidden="true"></div>
-  <div class="hero-word" aria-hidden="true">$ANT</div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <p class="kicker"><span class="dot"></span>Live on Ethereum</p>
-      <h1 class="masthead" aria-label="Anthropic">Anthropic</h1>
-      <p class="hero-sub split-words">Small but mighty. One ant lifts fifty times its weight. A colony lifts the chart.</p>
-      <div class="hero-btns">
-        <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg>Buy Now</a>
-        <a class="btn btn-dark btn-lg" data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-chart"/></svg>Chart</a>
-      </div>
-      <div class="ca-box glass" role="group" aria-label="Contract address">
-        <span class="ca-tag">CA</span>
-        <code class="ca-value" data-ca>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code>
-        <button class="copy-ca ca-btn" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy</span></button>
-      </div>
-      <p class="scam"><svg><use href="#i-shield"/></svg>Only trust the CA posted here and on our official X. Nobody from the colony will DM you first.</p>
-    </div>
-    <div class="hero-art">
-      <div class="halo" aria-hidden="true"></div>
-      <picture class="hero-ant" data-depth="0.35">
-        <source srcset="assets/ant-masked.webp" type="image/webp">
-        <img src="assets/ant-masked.png" width="720" height="500" alt="The $ANT mascot: a realistic orange-red ant wearing a beige cap with a stylized A mark" fetchpriority="high">
-      </picture>
-      <span class="chip c1" data-depth="0.6">SMALL BUT MIGHTY</span>
-      <span class="chip c2" data-depth="0.8">COLONY +1</span>
-      <span class="chip c3" data-depth="0.5">HOLD THE LINE</span>
-    </div>
+  <div class="surface" aria-hidden="true">
+    <div class="surface__sky"></div>
+    <svg class="surface__grass" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120V70 L6 65 L13 70 L20 71 L27 70 L32 40 L36 70 L40 51 L45 70 L54 71 L62 70 L70 61 L78 70 L82 69 L86 70 L93 48 L100 70 L104 59 L109 70 L114 39 L118 70 L125 71 L132 70 L140 67 L149 70 L154 37 L160 70 L164 38 L168 70 L176 49 L185 70 L189 60 L193 70 L197 39 L201 70 L206 56 L211 70 L218 65 L225 70 L233 67 L241 70 L250 55 L258 70 L266 63 L274 70 L278 37 L283 70 L292 62 L300 70 L306 68 L313 70 L321 70 L329 70 L338 71 L346 70 L354 61 L363 70 L370 40 L378 70 L385 54 L392 70 L400 37 L407 70 L414 51 L422 70 L428 59 L434 70 L439 59 L444 70 L448 38 L453 70 L459 41 L465 70 L472 53 L480 70 L488 56 L495 70 L504 70 L512 70 L516 42 L521 70 L528 64 L535 70 L542 65 L548 70 L556 48 L563 70 L567 70 L571 70 L579 38 L587 70 L594 53 L600 70 L606 36 L613 70 L620 37 L628 70 L636 70 L643 70 L648 57 L652 70 L660 70 L667 70 L671 55 L675 70 L684 38 L693 70 L702 46 L711 70 L717 50 L723 70 L732 52 L741 70 L745 45 L749 70 L756 64 L762 70 L770 67 L779 70 L786 71 L794 70 L800 56 L805 70 L810 59 L815 70 L822 49 L829 70 L836 69 L844 70 L849 46 L854 70 L861 39 L868 70 L874 66 L880 70 L887 39 L894 70 L900 48 L906 70 L912 50 L919 70 L924 65 L930 70 L934 63 L939 70 L944 60 L949 70 L958 60 L967 70 L971 43 L975 70 L984 63 L992 70 L998 56 L1004 70 L1008 65 L1012 70 L1019 40 L1026 70 L1032 38 L1039 70 L1046 66 L1052 70 L1060 71 L1068 70 L1076 39 L1083 70 L1090 49 L1097 70 L1104 49 L1111 70 L1116 44 L1120 70 L1129 49 L1138 70 L1142 62 L1146 70 L1150 61 L1155 70 L1162 64 L1170 70 L1174 53 L1179 70 L1188 71 L1196 70 L1200 74 L1205 70 L1214 65 L1222 70 L1230 68 L1238 70 L1244 73 L1251 70 L1256 61 L1260 70 L1268 50 L1277 70 L1282 58 L1287 70 L1294 36 L1300 70 L1306 44 L1313 70 L1318 67 L1322 70 L1330 45 L1337 70 L1344 44 L1352 70 L1358 69 L1364 70 L1369 68 L1374 70 L1380 58 L1387 70 L1394 64 L1402 70 L1410 73 L1418 70 L1424 41 L1429 70 L1436 65 L1442 70 V120Z"/></svg>
   </div>
   <div class="strata" aria-hidden="true">
-    <svg class="s1" data-depth="0.2" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 60 C200 20 380 90 620 50 S1100 10 1440 60 V120 H0z"/></svg>
-    <svg class="s2" data-depth="0.4" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 70 C260 110 480 30 760 70 S1200 100 1440 50 V120 H0z"/></svg>
-    <svg class="s3" data-depth="0.6" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 80 C300 50 500 110 820 80 S1250 60 1440 90 V120 H0z"/></svg>
-    <div class="marchers top"><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg></div>
+    <div class="stratum s1" data-speed="0.15"></div>
+    <div class="stratum s2" data-speed="0.3"></div>
+    <div class="stratum s3" data-speed="0.45"></div>
+  </div>
+  <canvas id="swarm" class="hero__swarm" aria-hidden="true"></canvas>
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow reveal"><svg><use href="#i-eth"/></svg> Ethereum mainnet &middot; community meme token</p>
+      <h1 class="hero__title reveal" data-split>
+        <span class="hero__name">Anthropic</span>
+        <span class="hero__ticker">$ANT</span>
+      </h1>
+      <p class="hero__sub reveal">Tiny legs. Heavy bags. A colony of degens digging the deepest tunnel on Ethereum, one block at a time.</p>
+
+      <div class="ca reveal march" id="caBox">
+        <span class="ca__label">CA</span>
+        <code class="ca__value" id="caValue">0xd85db1599a0ff426e74129139ef936f022a1f1f0</code>
+        <button class="ca__copy" id="caCopy" type="button" aria-label="Copy contract address"><svg class="ico-copy"><use href="#i-copy"/></svg><svg class="ico-ok"><use href="#i-check"/></svg><span class="ca__copy-text">Copy</span></button>
+      </div>
+
+      <div class="hero__btns reveal">
+        <a class="btn btn--amber magnetic" data-buy-link href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg><span>Buy on Uniswap</span></a>
+        <a class="btn btn--ghost magnetic" data-chart-link href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-chart"/></svg><span>Chart</span></a>
+        <a class="btn btn--ghost magnetic" data-x-link href="https://x.com/AnthropicEthX" target="_blank" rel="noopener"><svg><use href="#i-x"/></svg><span>Follow on X</span></a>
+      </div>
+
+      <ul class="hero__stats reveal">
+        <li><b data-count="6">0</b><span>legs per holder</span></li>
+        <li><b data-count="50" data-suffix="x">0</b><span>own weight, lifted</span></li>
+        <li><b data-count="1">0</b><span>colony</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__coin reveal" aria-hidden="false">
+      <div class="coin" id="coin">
+        <div class="coin__glow"></div>
+        <svg class="coin__orbit" viewBox="0 0 400 400" aria-hidden="true">
+          <defs><path id="orbitPath" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs>
+          <circle cx="200" cy="200" r="170" class="coin__ring"/>
+          <text class="coin__orbit-text"><textPath href="#orbitPath">$ANT &#183; THE COLONY &#183; ETHEREUM &#183; DIG DEEPER &#183; $ANT &#183; THE COLONY &#183; ETHEREUM &#183; DIG DEEPER &#183;</textPath></text>
+        </svg>
+        <div class="coin__marchers" aria-hidden="true">
+          <svg style="--i:0"><use href="#i-ant"/></svg><svg style="--i:1"><use href="#i-ant"/></svg><svg style="--i:2"><use href="#i-ant"/></svg><svg style="--i:3"><use href="#i-ant"/></svg><svg style="--i:4"><use href="#i-ant"/></svg><svg style="--i:5"><use href="#i-ant"/></svg>
+        </div>
+        <img class="coin__logo" src="assets/logo.png" alt="$ANT logo" width="512" height="512">
+      </div>
+    </div>
+  </div>
+
+  <a class="hero__dig" href="#lore"><span>Dig in</span><svg><use href="#i-arrow-down"/></svg></a>
+  <p class="hero__hint" aria-hidden="true">move your cursor through the swarm &middot; click to scatter</p>
+</section>
+
+<!-- ============ TICKER TAPE ============ -->
+<div class="tape" aria-hidden="true">
+  <div class="tape__track">
+    <span>$ANT</span><svg><use href="#i-ant"/></svg><span>Dig deeper</span><svg><use href="#i-ant"/></svg><span>Six legs, no paper hands</span><svg><use href="#i-ant"/></svg><span>The colony on Ethereum</span><svg><use href="#i-ant"/></svg><span>Follow the trail</span><svg><use href="#i-ant"/></svg>
+    <span>$ANT</span><svg><use href="#i-ant"/></svg><span>Dig deeper</span><svg><use href="#i-ant"/></svg><span>Six legs, no paper hands</span><svg><use href="#i-ant"/></svg><span>The colony on Ethereum</span><svg><use href="#i-ant"/></svg><span>Follow the trail</span><svg><use href="#i-ant"/></svg>
+  </div>
+</div>
+
+<!-- ============ LORE ============ -->
+<section class="section" id="lore" data-chamber="left">
+  <div class="chamber chamber--wide reveal">
+    <div class="chamber__tag"><span>Chamber 01</span><em>-12m</em></div>
+    <div class="lore">
+      <div class="lore__text">
+        <h2 class="h2">The lore of the <span class="hl">colony</span></h2>
+        <p>Nobody saw them coming. While the surface argued about charts, a few ants kept digging. One tunnel became ten. Ten became a network. The network became a colony, and the colony found Ethereum.</p>
+        <p>$ANT is the token of that colony: a community meme coin for anyone who believes small things working together can move a mountain. No queen hoarding the honey, no promises from the surface. Just a swarm, a trail, and a ticker.</p>
+        <p class="lore__kicker">Every ant carries something. What are you carrying?</p>
+      </div>
+      <ul class="lore__traits">
+        <li class="trait march"><svg><use href="#i-users"/></svg><div><b>Swarm-first</b><span>Community owned and community driven. The colony decides.</span></div></li>
+        <li class="trait march"><svg><use href="#i-shovel"/></svg><div><b>Always digging</b><span>Builders who show up every day, bull or bear, rain or shine.</span></div></li>
+        <li class="trait march"><svg><use href="#i-eth"/></svg><div><b>Ethereum native</b><span>Lives on Ethereum mainnet. Trades on Uniswap.</span></div></li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<div class="ribbons" aria-hidden="true">
-  <div class="ribbon r1"><div class="track">HOLD THE LINE <i></i> COLONY STRONG <i></i> SMALL BUT MIGHTY <i></i> WORK TOGETHER <i></i> $ANT <i></i> HOLD THE LINE <i></i> COLONY STRONG <i></i> SMALL BUT MIGHTY <i></i> WORK TOGETHER <i></i> $ANT <i></i></div></div>
-  <div class="ribbon r2"><div class="track">ETHEREUM <i></i> ONE COLONY <i></i> NO ANT LEFT BEHIND <i></i> DIG DEEPER <i></i> ETHEREUM <i></i> ONE COLONY <i></i> NO ANT LEFT BEHIND <i></i> DIG DEEPER <i></i></div></div>
-</div>
+<!-- ============ GALLERY ============ -->
+<section class="section" id="gallery" data-chamber="right">
+  <div class="section__head reveal">
+    <div class="chamber__tag"><span>Chamber 02</span><em>-27m</em></div>
+    <h2 class="h2">The <span class="hl">archive</span></h2>
+    <p class="section__lead">Fossils from the colony feed. Tap any frame to open it.</p>
+  </div>
+  <div class="gallery" id="galleryGrid"><!-- filled by js/main.js from GALLERY config --></div>
+</section>
 
-<div class="underground">
-  <svg class="tunnel" id="tunnel" aria-hidden="true"><path class="tunnel-bed"/><path class="tunnel-line"/></svg>
+<!-- ============ HOW TO BUY ============ -->
+<section class="section" id="buy" data-chamber="left">
+  <div class="section__head reveal">
+    <div class="chamber__tag"><span>Chamber 03</span><em>-41m</em></div>
+    <h2 class="h2">How to <span class="hl">join the colony</span></h2>
+    <p class="section__lead">Four tunnels to your first $ANT.</p>
+  </div>
+  <ol class="steps">
+    <li class="step reveal">
+      <div class="step__num">01</div>
+      <div class="step__icon"><svg><use href="#i-wallet"/></svg></div>
+      <h3>Get a wallet</h3>
+      <p>Install an Ethereum wallet such as MetaMask, Rabby, or Coinbase Wallet. Write down your seed phrase offline and never share it.</p>
+    </li>
+    <li class="step reveal">
+      <div class="step__num">02</div>
+      <div class="step__icon"><svg><use href="#i-eth"/></svg></div>
+      <h3>Get some ETH</h3>
+      <p>Buy ETH on an exchange or in your wallet and send it to your address on Ethereum mainnet. Keep a little extra for gas.</p>
+    </li>
+    <li class="step reveal">
+      <div class="step__num">03</div>
+      <div class="step__icon"><svg><use href="#i-swap"/></svg></div>
+      <h3>Swap on Uniswap</h3>
+      <p>Open <a data-buy-link href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Uniswap</a>, connect your wallet, and swap ETH for $ANT. Always double check the contract address below.</p>
+      <div class="ca ca--mini" data-ca-mini><code data-ca-text>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code><button type="button" class="ca__copy" data-copy-ca aria-label="Copy contract address"><svg class="ico-copy"><use href="#i-copy"/></svg><svg class="ico-ok"><use href="#i-check"/></svg></button></div>
+    </li>
+    <li class="step reveal">
+      <div class="step__num">04</div>
+      <div class="step__icon"><svg><use href="#i-diamond"/></svg></div>
+      <h3>Hold with the colony</h3>
+      <p>Welcome underground. Follow us on X, join the swarm, and keep digging together.</p>
+    </li>
+  </ol>
+  <div class="center reveal"><a class="btn btn--amber btn--lg magnetic" data-buy-link href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg><span>Buy $ANT on Uniswap</span></a></div>
+</section>
 
-  <section class="chamber" id="colony">
-    <div class="wrap grid-2">
-      <div>
-        <p class="depth">Chamber 01 &middot; Depth 12cm</p>
-        <h2 class="split-words">Welcome to the colony.</h2>
-        <p class="lead reveal">$ANT is a meme token built on one simple truth: nothing is stronger than a colony that works together. No whales pretending to be kings. Just millions of tiny workers, carrying crumbs, holding the line.</p>
-        <ul class="ticks">
-          <li class="reveal"><svg><use href="#i-check"/></svg>Built on Ethereum</li>
-          <li class="reveal"><svg><use href="#i-check"/></svg>Community first, pure meme energy</li>
-          <li class="reveal"><svg><use href="#i-check"/></svg>Small but mighty since day one</li>
-        </ul>
-      </div>
-      <figure class="logo-frame reveal">
-        <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" width="400" height="400" loading="lazy" alt="$ANT logo portrait: orange ant with an A-marked beige cap"></picture>
-        <figcaption>Worker #0001 &middot; reporting for duty</figcaption>
-      </figure>
-    </div>
-  </section>
+<!-- ============ TOKENOMICS ============ -->
+<section class="section" id="tokenomics" data-chamber="right">
+  <div class="section__head reveal">
+    <div class="chamber__tag"><span>Chamber 04</span><em>-58m</em></div>
+    <h2 class="h2"><span class="hl">Tokenomics</span></h2>
+    <p class="section__lead">Still being excavated. Final figures will be posted here and on our X once confirmed.</p>
+  </div>
+  <div class="toks">
+    <div class="tok reveal march"><svg><use href="#i-pie"/></svg><span>Total supply</span><b class="tba">TBA</b></div>
+    <div class="tok reveal march"><svg><use href="#i-percent"/></svg><span>Buy / sell tax</span><b class="tba">TBA</b></div>
+    <div class="tok reveal march"><svg><use href="#i-drop"/></svg><span>Liquidity</span><b class="tba">TBA</b></div>
+    <div class="tok reveal march"><svg><use href="#i-lock"/></svg><span>Chain</span><b data-chain>Ethereum</b></div>
+  </div>
+  <div class="tok-ca reveal"><span>Contract</span><code data-ca-text>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code><button type="button" class="ca__copy" data-copy-ca aria-label="Copy contract address"><svg class="ico-copy"><use href="#i-copy"/></svg><svg class="ico-ok"><use href="#i-check"/></svg><span class="ca__copy-text">Copy</span></button></div>
+</section>
 
-  <section class="banner-sec" aria-label="Colony banner">
-    <div class="banner-clip" id="bannerClip">
-      <picture><source srcset="assets/banner.webp" type="image/webp"><img id="bannerImg" src="assets/banner.png" width="1500" height="500" loading="lazy" alt="Wide banner of the $ANT mascot ant in its beige cap"></picture>
-      <p class="banner-tag">ONE ANT. ONE COLONY. ONE CHAIN.</p>
-    </div>
-  </section>
+<!-- ============ ROADMAP ============ -->
+<section class="section" id="roadmap" data-chamber="left">
+  <div class="section__head reveal">
+    <div class="chamber__tag"><span>Chamber 05</span><em>-73m</em></div>
+    <h2 class="h2">The <span class="hl">dig plan</span></h2>
+    <p class="section__lead">No dates, no promises. Just the direction the tunnel is heading.</p>
+  </div>
+  <div class="roadmap">
+    <div class="rm reveal"><div class="rm__dot"><svg><use href="#i-shovel"/></svg></div><div class="rm__body"><em>Phase 1</em><h3>First Tunnel</h3><ul><li>Launch on Ethereum</li><li>Website and socials live</li><li>First colony members arrive</li></ul></div></div>
+    <div class="rm reveal"><div class="rm__dot"><svg><use href="#i-users"/></svg></div><div class="rm__body"><em>Phase 2</em><h3>Grow the Nest</h3><ul><li>Community raids and memes</li><li>Holder growth</li><li>Community art and contests</li></ul></div></div>
+    <div class="rm reveal"><div class="rm__dot"><svg><use href="#i-chart"/></svg></div><div class="rm__body"><em>Phase 3</em><h3>Expand the Network</h3><ul><li>Broader visibility for $ANT</li><li>Tracker listings as the colony grows</li><li>More chambers, more builders</li></ul></div></div>
+    <div class="rm reveal"><div class="rm__dot"><svg><use href="#i-crown"/></svg></div><div class="rm__body"><em>Phase 4</em><h3>Supercolony</h3><ul><li>Community-led ideas take the wheel</li><li>Keep digging, keep memeing</li><li>The trail never ends</li></ul></div></div>
+  </div>
+</section>
 
-  <section class="chamber strength" id="strength">
-    <div class="wrap strength-grid">
-      <div>
-        <p class="depth">Chamber 02 &middot; The Crumb Run</p>
-        <h2 class="split-words">Every crumb counts.</h2>
-        <p class="lead">Scroll down and watch the workers haul crumbs up the tunnel. Every holder is one more ant on the line. Enough ants and the gauge hits the top.</p>
-        <div class="gauge glass" role="img" aria-label="Colony strength gauge filling to colony strong">
-          <div class="gauge-head"><span>COLONY STRENGTH</span><b id="gaugePct">0%</b></div>
-          <div class="gauge-bar"><span id="gaugeFill"></span></div>
-          <p class="gauge-state" id="gaugeState">DIGGING...</p>
-        </div>
-      </div>
-      <div class="run">
-        <svg viewBox="0 0 300 420" class="run-svg" aria-hidden="true">
-          <path id="runPath" d="M150 410 C40 360 260 300 150 240 S40 120 150 70 S200 20 150 10" class="run-tunnel"/>
-          <path d="M150 410 C40 360 260 300 150 240 S40 120 150 70 S200 20 150 10" class="run-dash"/>
-          <ellipse cx="150" cy="12" rx="60" ry="10" class="run-mound"/>
-          <g id="runners"></g>
-        </svg>
-      </div>
-    </div>
-  </section>
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq" data-chamber="right">
+  <div class="section__head reveal">
+    <div class="chamber__tag"><span>Chamber 06</span><em>-86m</em></div>
+    <h2 class="h2">Questions from the <span class="hl">surface</span></h2>
+  </div>
+  <div class="faq">
+    <details class="qa reveal"><summary>What is $ANT?<svg><use href="#i-plus"/></svg></summary><div><p>$ANT is a community meme token on Ethereum built around the colony: lots of small holders working together. It is for fun and community.</p></div></details>
+    <details class="qa reveal"><summary>Is $ANT affiliated with Anthropic PBC?<svg><use href="#i-plus"/></svg></summary><div><p><strong>No.</strong> $ANT is an independent community meme token. It is not affiliated with, endorsed by, or connected to Anthropic PBC or its products.</p></div></details>
+    <details class="qa reveal"><summary>Which chain is $ANT on?<svg><use href="#i-plus"/></svg></summary><div><p>Ethereum mainnet. Make sure your wallet is on Ethereum before you swap.</p></div></details>
+    <details class="qa reveal"><summary>How do I buy?<svg><use href="#i-plus"/></svg></summary><div><p>Use the Buy button to open Uniswap with the $ANT contract pre-filled, connect your wallet, and swap ETH for $ANT. See the How to Buy chamber for step by step instructions.</p></div></details>
+    <details class="qa reveal"><summary>What are the tokenomics?<svg><use href="#i-plus"/></svg></summary><div><p>To be announced. We will only publish figures once they are confirmed. Follow our official X account for updates.</p></div></details>
+    <details class="qa reveal"><summary>Is this financial advice?<svg><use href="#i-plus"/></svg></summary><div><p>No. $ANT is a meme coin with no intrinsic value or expectation of financial return. Nothing on this site is financial advice. Only spend what you can afford to lose and always do your own research.</p></div></details>
+  </div>
+</section>
 
-  <section class="chamber" id="report">
-    <div class="wrap">
-      <p class="depth">Chamber 03 &middot; Colony Report</p>
-      <h2 class="split-words">The colony report.</h2>
-      <div class="stats">
-        <article class="stat glass reveal"><span class="k">Ticker</span><b>$ANT</b><p>One symbol, one colony.</p></article>
-        <article class="stat glass reveal"><span class="k">Chain</span><b>Ethereum</b><p>Mainnet, paid in ETH.</p></article>
-        <article class="stat glass reveal"><span class="k">Lift ratio</span><b><span class="count" data-to="50">50</span>x</b><p>An ant lifts 50x its weight.</p></article>
-        <article class="stat glass reveal"><span class="k">Ants left behind</span><b><span class="count" data-to="0">0</span></b><p>Work together. Hold together.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="chamber" id="how">
-    <div class="wrap">
-      <p class="depth">Chamber 04 &middot; The Nursery</p>
-      <h2 class="split-words">How to buy $ANT.</h2>
-      <ol class="steps">
-        <li class="step glass reveal"><span class="n">01</span><svg class="si"><use href="#i-wallet"/></svg><h3>Get a wallet</h3><p>Install MetaMask or Rabby and create a wallet on Ethereum.</p></li>
-        <li class="step glass reveal"><span class="n">02</span><svg class="si"><use href="#i-eth"/></svg><h3>Get ETH</h3><p>Buy ETH on an exchange and send it to your Ethereum wallet. You'll use it for the swap and gas.</p></li>
-        <li class="step glass reveal"><span class="n">03</span><svg class="si"><use href="#i-swap"/></svg><h3>Open Uniswap</h3><p>Go to Uniswap, connect your wallet and stay on Ethereum.</p></li>
-        <li class="step glass reveal"><span class="n">04</span><svg class="si"><use href="#i-ant"/></svg><h3>Paste the CA and swap</h3><p>Paste the $ANT contract address, choose your ETH amount and swap. Welcome to the colony.</p></li>
-      </ol>
-      <div class="how-cta reveal">
-        <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener"><svg><use href="#i-swap"/></svg>Buy $ANT on Uniswap</a>
-        <div class="ca-box glass" role="group" aria-label="Contract address"><span class="ca-tag">CA</span><code class="ca-value" data-ca>0xd85db1599a0ff426e74129139ef936f022a1f1f0</code><button class="copy-ca ca-btn" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">Copy</span></button></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="chamber" id="chart">
-    <div class="wrap">
-      <p class="depth">Chamber 05 &middot; The Lookout</p>
-      <h2 class="split-words">Watch the hill grow.</h2>
-      <div class="chart-frame glass reveal">
-        <div class="chart-bar"><span><i></i><i></i><i></i></span><b>$ANT / ETH &middot; Ethereum</b><a data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Open DexScreener</a></div>
-        <div class="chart-body">
-          <style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe id="dexEmbed" src="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="chamber" id="faq">
-    <div class="wrap narrow">
-      <p class="depth">Chamber 06 &middot; The Royal Chamber</p>
-      <h2 class="split-words"><svg class="crown"><use href="#i-crown"/></svg> Questions from the Queen.</h2>
-      <div class="faq">
-        <details class="glass reveal"><summary>What is $ANT?</summary><p>A community meme token on Ethereum celebrating the humble ant: small but mighty, and unstoppable together.</p></details>
-        <details class="glass reveal"><summary>Which chain is it on?</summary><p>Ethereum mainnet. You pay gas and swap with ETH.</p></details>
-        <details class="glass reveal"><summary>Where is the contract address?</summary><p>0xd85db1599a0ff426e74129139ef936f022a1f1f0. It appears in every CA box on this page. Always verify it against our official X.</p></details>
-        <details class="glass reveal"><summary>Is this affiliated with any company?</summary><p>No. $ANT is a community meme token with no affiliation with Anthropic PBC or any company.</p></details>
-        <details class="glass reveal"><summary>How do I join the colony?</summary><p>Follow us on X, buy some $ANT and hold the line.</p></details>
-      </div>
-    </div>
-  </section>
-</div>
-
-<section class="surface-cta">
-  <div class="marchers"><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg><svg><use href="#i-ant"/></svg></div>
-  <h2 class="split-words">Colony strong. Join the line.</h2>
-  <div class="hero-btns center">
-    <a class="btn btn-primary btn-lg" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
-    <a class="btn btn-dark btn-lg" data-link="x" href="https://x.com/AnthropicEthX" target="_blank" rel="noopener"><svg><use href="#i-x"/></svg>Follow on X</a>
+<!-- ============ COMMUNITY ============ -->
+<section class="section community" id="community" data-chamber="center">
+  <div class="queen reveal march">
+    <div class="chamber__tag"><span>The Queen's Chamber</span><em>-100m</em></div>
+    <h2 class="h2">Join the <span class="hl">swarm</span></h2>
+    <p>Our only official channel is X. Anything else claiming to be us is not us.</p>
+    <a class="btn btn--amber btn--lg magnetic" data-x-link href="https://x.com/AnthropicEthX" target="_blank" rel="noopener"><svg><use href="#i-x"/></svg><span data-x-handle>@AnthropicEthX</span></a>
+    <svg class="queen__ant" aria-hidden="true"><use href="#i-ant"/></svg>
   </div>
 </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <div class="foot-brand"><picture><source srcset="assets/logo-thumb.webp" type="image/webp"><img src="assets/logo-thumb.png" width="48" height="48" alt="$ANT logo" loading="lazy"></picture><b>Anthropic ($ANT)</b></div>
-    <p class="disc">$ANT is a community meme token with no affiliation with Anthropic PBC or any company. It has no intrinsic value or expectation of financial return. Nothing on this site is financial advice. Crypto is risky; only use what you can afford to lose. Always verify the contract address.</p>
-    <p class="copy">&copy; 2026 The $ANT colony. Small but mighty.</p>
+<footer class="footer">
+  <div class="footer__top">
+    <a class="nav__brand" href="#top"><img src="assets/logo.png" alt="" width="40" height="40" class="nav__logo"><span>$ANT</span></a>
+    <div class="footer__links">
+      <a data-x-link href="https://x.com/AnthropicEthX" target="_blank" rel="noopener" class="icon-btn" aria-label="X"><svg><use href="#i-x"/></svg></a>
+      <a data-chart-link href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener" class="icon-btn" aria-label="Chart on DexScreener"><svg><use href="#i-chart"/></svg></a>
+      <a data-buy-link href="https://app.uniswap.org/#/swap?inputCurrency=eth&amp;outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener" class="icon-btn" aria-label="Buy on Uniswap"><svg><use href="#i-swap"/></svg></a>
+    </div>
   </div>
+  <div class="disclaimer">
+    <svg><use href="#i-alert"/></svg>
+    <div>
+      <p><strong>$ANT is an independent community meme token. It is not affiliated with, endorsed by, or connected to Anthropic PBC or its products.</strong></p>
+      <p>$ANT is a meme coin with no intrinsic value or expectation of financial return. There is no formal team or roadmap commitment. Nothing on this website is financial advice. Crypto assets are highly volatile; only spend what you can afford to lose and always do your own research.</p>
+    </div>
+  </div>
+  <p class="footer__copy">&copy; <span id="year">2026</span> $ANT community. Dig responsibly.</p>
 </footer>
 
-<div class="mobile-bar glass" aria-label="Quick actions">
-  <a class="btn btn-primary" data-link="buy" href="https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Buy Now</a>
-  <a class="btn btn-dark" data-link="chart" href="https://dexscreener.com/ethereum/0xd85db1599a0ff426e74129139ef936f022a1f1f0" target="_blank" rel="noopener">Chart</a>
-  <button class="btn btn-ghost copy-ca" type="button" aria-label="Copy contract address"><svg><use href="#i-copy"/></svg><span class="lbl">CA</span></button>
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer" hidden>
+  <button class="lb__btn lb__close" id="lbClose" aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  <button class="lb__btn lb__prev" id="lbPrev" aria-label="Previous image"><svg><use href="#i-left"/></svg></button>
+  <figure class="lb__fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb__btn lb__next" id="lbNext" aria-label="Next image"><svg><use href="#i-right"/></svg></button>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/vendor/gsap.min.js" defer></script>
-<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/vendor/lenis.min.js" defer></script>
-<script src="script.js" defer></script>
+<script src="js/main.js"></script>
 </body>
 </html>
