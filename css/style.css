@@ -199,7 +199,7 @@ section{position:relative}
 .step p{margin:0;color:var(--muted);font-size:.97rem}
 
 /* tokenomics */
-.toks{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.toks{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .tok{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:28px;border-radius:26px;background:linear-gradient(160deg,#28160c,#140b06)}
 .tok>svg{width:30px;height:30px;color:var(--leaf)}
 .tok span{color:var(--muted);font-weight:600}
