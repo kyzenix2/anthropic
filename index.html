@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ant ($ANT) | Small Ant. Big Colony. On Ethereum</title>
+  <meta name="description" content="Small ant. Big colony. Ant ($ANT) is the hardest-working community meme token on Ethereum." />
+  <meta name="theme-color" content="#e9e1d6" />
+  <meta property="og:title" content="Ant ($ANT)" />
+  <meta property="og:description" content="Small ant. Big colony. The hardest-working meme on Ethereum." />
+  <meta property="og:image" content="assets/banner.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="assets/banner.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#e9e1d6', surface: '#f4efe8', surface2: '#fbf8f3',
+            rust: '#ba6033', rustdeep: '#984720', espresso: '#2a1d15', cream: '#f4efe8', peach: '#984720'
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+            serif: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-ink text-espresso font-sans antialiased">
+  <div class="sparkles" aria-hidden="true"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- 1. NAVBAR -->
+  <header id="nav" class="fixed top-0 inset-x-0 z-50 nav">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2.5 min-w-0">
+        <img src="assets/logo.webp" alt="" width="36" height="36" class="w-9 h-9 rounded-full logo-glow-sm" />
+        <span class="font-display font-bold tracking-tight text-espresso truncate text-sm sm:text-base" data-name>Ant</span>
+        <span class="badge hidden sm:inline-flex" data-ticker>$ANT</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm text-[#5c4a3c]">
+        <a href="#about" class="navlink">About</a>
+        <a href="#how" class="navlink">How to Buy</a>
+        <a href="#community" class="navlink">Community</a>
+        <a href="#chart" class="navlink">Chart</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="#" class="btn-rust btn-sm" data-buy>Buy Now</a>
+        <button id="menuBtn" class="md:hidden icon-btn" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-[#d9cbb9] bg-[#f4efe8f2]">
+      <div class="px-4 py-3 flex flex-col text-[#3a2a1f]">
+        <a href="#about" class="py-2.5">About</a>
+        <a href="#how" class="py-2.5">How to Buy</a>
+        <a href="#community" class="py-2.5">Community</a>
+        <a href="#chart" class="py-2.5">Chart</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 2. HERO -->
+    <section class="relative pt-16 overflow-hidden pb-4">
+      <div class="banner-wrap">
+        <img src="assets/banner.webp" alt="Ant banner: a fuzzy rust-orange ant wearing a beige cap" width="1500" height="500" class="w-full h-auto block" fetchpriority="high" />
+        <div class="banner-fade"></div>
+      </div>
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center mt-3 md:-mt-12">
+        <div class="coin-stage mx-auto">
+          <div class="coin-halo"></div>
+
+          <img src="assets/logo.webp" alt="Ant logo: close-up of a fuzzy ant in a beige baseball cap" width="400" height="400" class="coin" />
+        </div>
+        <h1 class="font-display font-extrabold text-5xl sm:text-7xl lg:text-8xl mt-6 rust-text tracking-tight" data-name>Ant</h1>
+        <div class="mt-4 flex items-center justify-center gap-2 flex-wrap">
+          <span class="badge" data-ticker>$ANT</span>
+          <span class="badge badge-dark"><span class="eth-dot"></span><span data-chain>Ethereum</span></span>
+        </div>
+        <p class="mt-5 font-serif font-medium text-lg sm:text-2xl text-[#3a2a1f] leading-snug whitespace-pre-line" data-tagline></p>
+
+        <div class="ca-box mt-7 mx-auto">
+          <span class="ca-label">CA</span>
+          <code class="ca-value" data-ca>TBA</code>
+          <button class="btn-copy" data-copy type="button">Copy</button>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a href="#" class="btn-rust" data-buy>Buy Now</a>
+          <a href="#" class="btn-ghost" data-social="twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X
+          </a>
+        </div>
+        <div class="mt-5 inline-flex items-center gap-2 text-sm text-[#5c4a3c]">
+          <span class="live-dot"></span><span><span data-chain>Ethereum</span> • Live</span>
+        </div>
+
+        <!-- Live stats (only when CA is real) -->
+        <div id="stats" class="hidden mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="stat"><span>Price</span><b data-stat="price">-</b></div>
+          <div class="stat"><span>Market Cap</span><b data-stat="mcap">-</b></div>
+          <div class="stat"><span>Liquidity</span><b data-stat="liq">-</b></div>
+          <div class="stat"><span>24h Volume</span><b data-stat="vol">-</b></div>
+        </div>
+      </div>
+
+      <!-- Marquee -->
+      <div class="marquee mt-14" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT -->
+    <section id="about" class="section">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <p class="eyebrow">About</p>
+        <h2 class="h2">The <span class="rust-text">little guy</span> who never clocks out</h2>
+        <p class="mt-5 max-w-2xl text-[#5c4a3c] text-lg leading-relaxed" data-bio></p>
+        <div class="mt-10 grid gap-4 sm:gap-5 md:grid-cols-3" id="features"></div>
+      </div>
+    </section>
+
+    <!-- 4. HOW TO BUY -->
+    <section id="how" class="section bg-surface/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <p class="eyebrow">How to Buy</p>
+        <h2 class="h2">Join the colony in <span class="rust-text">four steps</span></h2>
+        <div class="eth-box mt-8">
+          <div class="eth-icon"><span class="eth-dot lg"></span></div>
+          <div class="min-w-0">
+            <p class="font-display text-espresso text-lg font-bold">You're on Ethereum</p>
+            <p class="text-[#5c4a3c] text-sm mt-1">$ANT lives on Ethereum mainnet. You'll need an Ethereum wallet and some ETH for the swap and gas fees.</p>
+          </div>
+        </div>
+        <ol class="steps-trail mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <li class="card step"><span class="step-num">01</span><h3>Get MetaMask</h3><p>Install the MetaMask app or browser extension from <span class="text-peach">metamask.io</span> and create a wallet. Keep your seed phrase private.</p></li>
+          <li class="card step"><span class="step-num">02</span><h3>Buy ETH</h3><p>Buy ETH inside MetaMask or on an exchange, then send it to your MetaMask wallet address.</p></li>
+          <li class="card step"><span class="step-num">03</span><h3>Open Uniswap</h3><p>Go to <span class="text-peach">app.uniswap.org</span> and connect your MetaMask wallet.</p></li>
+          <li class="card step"><span class="step-num">04</span><h3>Paste CA &amp; swap</h3><p>Paste the official contract address (<code class="text-peach break-all" data-ca>TBA</code>), choose an amount of ETH and confirm the swap.</p></li>
+        </ol>
+        <div class="mt-8 flex justify-center">
+          <a href="#" class="btn-rust" data-buy>Swap on DEX</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMMUNITY -->
+    <section id="community" class="section">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <p class="eyebrow">Community</p>
+        <h2 class="h2">Join the <span class="rust-text">colony</span></h2>
+        <div class="mt-8 grid gap-4 max-w-xl">
+          <a href="#" class="card social-card" data-social="twitter">
+            <div class="social-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+            <div class="min-w-0"><h3>X (Twitter)</h3><p>News, memes and announcements.</p></div>
+            <span class="social-cta" data-social-label>Follow</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LIVE CHART -->
+    <section id="chart" class="section bg-surface/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <p class="eyebrow">Live Chart</p>
+        <h2 class="h2">Watch the <span class="rust-text">anthill</span></h2>
+        <div id="chartWrap" class="chart-wrap mt-8"></div>
+        <div class="mt-6 flex justify-center">
+          <a href="#" class="btn-ghost" data-chart-link>Open on DexScreener ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. FOOTER -->
+  <footer class="bg-[#2a1d15]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-8">
+      <div class="grid gap-10 md:grid-cols-12">
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo.webp" alt="" width="48" height="48" class="w-12 h-12 rounded-full logo-glow-sm" loading="lazy" />
+            <span class="font-display font-bold text-xl text-cream" data-name>Ant</span>
+            <span class="badge" data-ticker>$ANT</span>
+          </div>
+          <p class="mt-4 font-serif text-lg text-[#d8c8b6] whitespace-pre-line" data-tagline></p>
+        </div>
+        <div class="md:col-span-2">
+          <p class="foot-h">Explore</p>
+          <ul class="foot-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#how">How to Buy</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#chart">Chart</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <p class="foot-h">Socials</p>
+          <ul class="foot-list">
+            <li><a href="#" data-social="twitter">X (Twitter)</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-3">
+          <p class="foot-h">Contract</p>
+          <div class="ca-box ca-box-sm mt-3">
+            <code class="ca-value" data-ca>TBA</code>
+            <button class="btn-copy" data-copy type="button">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="wordmark font-display font-black wordmark-text" aria-hidden="true" data-name>Ant</div>
+      <div class="border-t border-[#4a372a] pt-6 grid gap-3 md:grid-cols-2 text-xs text-[#b5a28f]">
+        <p data-disclaimer></p>
+        <p class="md:text-right">© <span id="year"></span> <span data-name>Ant</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
